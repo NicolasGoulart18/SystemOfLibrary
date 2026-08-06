@@ -1,4 +1,4 @@
-package interection;
+package library.interection;
 import library.service.Biblioteca;
 import library.model.Book;
 import java.util.Scanner;
