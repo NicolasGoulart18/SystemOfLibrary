@@ -20,6 +20,7 @@ public class Choice {
                     biblioteca.criarLivro();
                     break;
                 case 2:
+                    System.out.println("======== CATÁLOGO ========");
                     biblioteca.listarLivro();
                     break;
                 case 3:
@@ -28,6 +29,9 @@ public class Choice {
                     biblioteca.emprestarLivro(id);
                     break;
                 case 4:
+                    System.out.println("Informe o ID do livro que você deseja devolver: ");
+                    id=Integer.parseInt(scanner.nextLine());
+                    biblioteca.devolverLivro(id);
                     break;
                 case 5:
                     break;
