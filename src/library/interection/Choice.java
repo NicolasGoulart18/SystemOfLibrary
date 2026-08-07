@@ -12,6 +12,7 @@ public class Choice {
         Biblioteca biblioteca = new Biblioteca();
 
         boolean parar=false;
+        int id;
         do{
             int opcao=choice.opcao();
             switch (opcao){
@@ -22,7 +23,9 @@ public class Choice {
                     biblioteca.listarLivro();
                     break;
                 case 3:
-
+                    System.out.println("Informe o ID do livro que deseja pegar emprestado: ");
+                    id=scanner.nextInt();
+                    biblioteca.emprestarLivro(id);
                     break;
                 case 4:
                     break;
@@ -30,6 +33,8 @@ public class Choice {
                     break;
                 case 6:
                     parar=true;
+                    System.out.println("Obrigado!");
+                    System.out.println("Encerrando....");
                     break;
             }
         }while(!parar);

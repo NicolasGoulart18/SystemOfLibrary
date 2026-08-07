@@ -1,10 +1,11 @@
 package library.service;
 import library.model.Book;
+import library.interection.Choice;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Biblioteca {
-
+    Choice choice= new Choice();
     static  Scanner scanner = new Scanner(System.in);
     private ArrayList<Book>livros;
 
@@ -44,6 +45,29 @@ public class Biblioteca {
             System.out.println("Disponivel: "+status);
 
         }
+
+
+
+
+    }
+
+    public void emprestarLivro(int id){
+        for(Book livro: livros){
+            if(id== livro.getId()){
+                if (livro.isDisponivel()){
+                    livro.setDisponivel(false);
+                    System.out.println();
+                    System.out.println("Livro "+livro.getTitulo()+" emprestado com sucesso!");
+                }else{
+                    System.out.println("Livro indisponivel!");
+                    break;
+                }
+            }else{
+                System.out.println("Livro não encontrado");
+                break;
+            }
+        }
+
     }
 
 }
