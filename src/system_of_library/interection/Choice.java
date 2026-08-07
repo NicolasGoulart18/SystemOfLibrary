@@ -48,7 +48,7 @@ public class Choice {
     }
 
     public int opcao(){
-        System.out.println("=======  SEJA-BEM-VINDO  =======");
+        System.out.println("=======  MENU  =======");
         System.out.println("Escolha a categoria desejada:");
         System.out.println("[1] Adicionar Livro");
         System.out.println("[2] Listar Livro");
