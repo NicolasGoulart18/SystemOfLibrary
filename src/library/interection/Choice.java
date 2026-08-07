@@ -4,26 +4,19 @@ import library.model.Book;
 import java.util.Scanner;
 
 public class Choice {
-    static Scanner scanner = new Scanner (System.in);
+    public static Scanner scanner = new Scanner (System.in);
     public static void main(String[] args) {
+
         Choice choice = new Choice();
+
         Biblioteca biblioteca = new Biblioteca();
+
         boolean parar=false;
         do{
             int opcao=choice.opcao();
             switch (opcao){
                 case 1:
-                    System.out.println("Nome do livro: ");
-                    String titulo=scanner.nextLine() ;
-                    System.out.println("Nome do autor: ");
-                    String autor=scanner.nextLine();
-                    System.out.println("Ano de lançamento: ");
-                    int anodelancamento = scanner.nextInt();
-                    Book book = new Book(titulo,autor,anodelancamento);
-                    biblioteca.adicionarLivro(book);
-                    System.out.println();
-                    System.out.println("Livro adicionado com sucesso");
-                    System.out.println();
+                    biblioteca.criarLivro();
                     break;
                 case 2:
                     biblioteca.listarLivro();
@@ -41,6 +34,7 @@ public class Choice {
             }
         }while(!parar);
     }
+
     public int opcao(){
         System.out.println("Escolha sua opção");
         System.out.println("[1] Adicionar Livro");
