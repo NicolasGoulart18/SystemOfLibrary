@@ -101,7 +101,8 @@ public class Library {
                 System.out.println("Livro " + livros.get(i).getTitle() + " removido com sucesso!");
                 System.out.println();
                 livros.remove(i);
-            }return;
+                return;
+            }
         }
         System.out.println("Livro com ID "+id+" não encontrado!");
     }

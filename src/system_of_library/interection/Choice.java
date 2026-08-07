@@ -3,7 +3,7 @@ import system_of_library.service.Library;
 import java.util.Scanner;
 
 public class Choice {
-    public static Scanner scanner = new Scanner (System.in);
+    static Scanner scanner = new Scanner (System.in);
     public static void main(String[] args) {
 
         Choice choice = new Choice();
