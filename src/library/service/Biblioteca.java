@@ -94,4 +94,15 @@ public class Biblioteca {
     }
 
 
+    public void removerLivro(int id){
+        for (int i = 0; i < livros.size() ; i++) {
+            if(livros.get(i).getId()==id) {
+                System.out.println();
+                System.out.println("Livro " + livros.get(i).getTitulo() + " removido com sucesso!");
+                System.out.println();
+                livros.remove(i);
+            }return;
+        }
+        System.out.println("Livro com ID "+id+" não encontrado!");
+    }
 }

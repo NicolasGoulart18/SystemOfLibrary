@@ -8,11 +8,12 @@ public class Choice {
     public static void main(String[] args) {
 
         Choice choice = new Choice();
-
         Biblioteca biblioteca = new Biblioteca();
-
         boolean parar=false;
         int id;
+
+
+
         do{
             int opcao=choice.opcao();
             switch (opcao){
@@ -34,6 +35,9 @@ public class Choice {
                     biblioteca.devolverLivro(id);
                     break;
                 case 5:
+                    System.out.println("Informe o ID do livro que deseja remover: ");
+                    id=Integer.parseInt(scanner.nextLine());
+                    biblioteca.removerLivro(id);
                     break;
                 case 6:
                     parar=true;
@@ -45,10 +49,11 @@ public class Choice {
     }
 
     public int opcao(){
-        System.out.println("Escolha sua opção");
+        System.out.println("=======  SEJA-BEM-VINDO  =======");
+        System.out.println("Escolha a categoria desejada:");
         System.out.println("[1] Adicionar Livro");
         System.out.println("[2] Listar Livro");
-        System.out.println("[3] Emprestar Livro");
+        System.out.println("[3] Empréstimo de Livro");
         System.out.println("[4] Devolver Livro");
         System.out.println("[5] Remover Livro");
         System.out.println("[6] Encerrar atendimento");
