@@ -1,6 +1,5 @@
-package library.interection;
-import library.service.Biblioteca;
-import library.model.Book;
+package system_of_library.interection;
+import system_of_library.service.Library;
 import java.util.Scanner;
 
 public class Choice {
@@ -8,7 +7,7 @@ public class Choice {
     public static void main(String[] args) {
 
         Choice choice = new Choice();
-        Biblioteca biblioteca = new Biblioteca();
+        Library library = new Library();
         boolean parar=false;
         int id;
 
@@ -18,26 +17,26 @@ public class Choice {
             int opcao=choice.opcao();
             switch (opcao){
                 case 1:
-                    biblioteca.criarLivro();
+                    library.createBook();
                     break;
                 case 2:
                     System.out.println("======== CATÁLOGO ========");
-                    biblioteca.listarLivro();
+                    library.listBook();
                     break;
                 case 3:
                     System.out.println("Informe o ID do livro que deseja pegar emprestado: ");
                     id=scanner.nextInt();
-                    biblioteca.emprestarLivro(id);
+                    library.lendBook(id);
                     break;
                 case 4:
                     System.out.println("Informe o ID do livro que você deseja devolver: ");
                     id=Integer.parseInt(scanner.nextLine());
-                    biblioteca.devolverLivro(id);
+                    library.returnBook(id);
                     break;
                 case 5:
                     System.out.println("Informe o ID do livro que deseja remover: ");
                     id=Integer.parseInt(scanner.nextLine());
-                    biblioteca.removerLivro(id);
+                    library.removeBook(id);
                     break;
                 case 6:
                     parar=true;

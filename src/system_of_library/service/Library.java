@@ -1,19 +1,19 @@
-package library.service;
-import library.model.Book;
-import library.interection.Choice;
+package system_of_library.service;
+import system_of_library.model.Book;
+import system_of_library.interection.Choice;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Biblioteca {
+public class Library {
     Choice choice= new Choice();
     static  Scanner scanner = new Scanner(System.in);
     private ArrayList<Book>livros;
 
 
-    public  Biblioteca(){
+    public Library(){
         livros = new ArrayList<>();
     }
-    public void criarLivro(){
+    public void createBook(){
         System.out.println("Nome do livro: ");
         String nomeL=scanner.nextLine();
         System.out.println("Nome do autor: ");
@@ -21,26 +21,26 @@ public class Biblioteca {
         System.out.println("Ano de lançamento: ");
         int ano=Integer.parseInt(scanner.nextLine());
         Book book = new Book(nomeL,nomeA,ano);
-        adicionarLivro(book);
+        addBook(book);
 
     }
 
-    public void adicionarLivro(Book livro){
+    public void addBook(Book livro){
         livros.add(livro);
     }
 
-    public void listarLivro(){
+    public void listBook(){
         for(Book livro:livros){
             String status;
-            if(livro.isDisponivel()){
+            if(livro.isAvailable()){
                 status="Sim";
             }else{
                 status="Não";
             }
             System.out.println("ID: "+livro.getId());
-            System.out.println("Livro : "+ livro.getTitulo());
-            System.out.println("Autor: "+livro.getAutor());
-            System.out.println("Ano de lançamento: "+livro.getAnodelancamento());
+            System.out.println("Livro : "+ livro.getTitle());
+            System.out.println("Autor: "+livro.getAuthor());
+            System.out.println("Ano de lançamento: "+livro.getReleaseyear());
             System.out.println("Disponivel: "+status);
             System.out.println();
 
@@ -51,17 +51,17 @@ public class Biblioteca {
 
     }
 
-    public void emprestarLivro(int id){
+    public void lendBook(int id){
         for(Book livro: livros){
             if(livro.getId()==id){
-                if (livro.isDisponivel()){
-                    livro.setDisponivel(false);
+                if (livro.isAvailable()){
+                    livro.setAvailable(false);
                     System.out.println();
-                    System.out.println("Livro "+livro.getTitulo()+" emprestado com sucesso!");
+                    System.out.println("Livro "+livro.getTitle()+" emprestado com sucesso!");
                     System.out.println();
                 }else{
                     System.out.println();
-                    System.out.println(livro.getTitulo()+" já foi emprestado!");
+                    System.out.println(livro.getTitle()+" já foi emprestado!");
                     System.out.println();
                 }
                 return;
@@ -71,13 +71,13 @@ public class Biblioteca {
         System.out.println("Livro com ID: "+id+" não encontrado!");
     }
 
-    public void devolverLivro(int id){
+    public void returnBook(int id){
         for (Book livro:livros){
             if (livro.getId()==id){
-                if (!livro.isDisponivel()){
-                    livro.setDisponivel(true);
+                if (!livro.isAvailable()){
+                    livro.setAvailable(true);
                     System.out.println();
-                    System.out.println(livro.getTitulo()+" devolvido com sucesso!");
+                    System.out.println(livro.getTitle()+" devolvido com sucesso!");
                     System.out.println();
                 }else{
                     System.out.println();
@@ -94,11 +94,11 @@ public class Biblioteca {
     }
 
 
-    public void removerLivro(int id){
+    public void removeBook(int id){
         for (int i = 0; i < livros.size() ; i++) {
             if(livros.get(i).getId()==id) {
                 System.out.println();
-                System.out.println("Livro " + livros.get(i).getTitulo() + " removido com sucesso!");
+                System.out.println("Livro " + livros.get(i).getTitle() + " removido com sucesso!");
                 System.out.println();
                 livros.remove(i);
             }return;
