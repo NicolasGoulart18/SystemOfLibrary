@@ -25,7 +25,7 @@ public class Choice {
                     break;
                 case 3:
                     System.out.println("Informe o ID do livro que deseja pegar emprestado: ");
-                    id=scanner.nextInt();
+                    id=Integer.parseInt(scanner.nextLine());
                     library.lendBook(id);
                     break;
                 case 4:
@@ -56,8 +56,7 @@ public class Choice {
         System.out.println("[4] Devolver Livro");
         System.out.println("[5] Remover Livro");
         System.out.println("[6] Encerrar atendimento");
-        int opcao= scanner.nextInt();
-        scanner.nextLine();
+        int opcao=Integer.parseInt(scanner.nextLine());
         return opcao;
     }
 

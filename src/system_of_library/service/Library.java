@@ -1,11 +1,10 @@
 package system_of_library.service;
 import system_of_library.model.Book;
-import system_of_library.interection.Choice;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Library {
-    Choice choice= new Choice();
+
     static  Scanner scanner = new Scanner(System.in);
     private ArrayList<Book>livros;
 
