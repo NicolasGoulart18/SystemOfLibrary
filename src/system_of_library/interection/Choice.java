@@ -1,4 +1,5 @@
 package system_of_library.interection;
+import system_of_library.funcionario.Bibliotecario;
 import system_of_library.service.Library;
 import java.util.Scanner;
 
@@ -10,7 +11,6 @@ public class Choice {
         Library library = new Library();
         boolean parar=false;
         int id;
-
 
 
         do{
