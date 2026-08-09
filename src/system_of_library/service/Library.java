@@ -44,11 +44,9 @@ public class Library {
             System.out.println();
 
         }
-
-
-
-
     }
+
+
 
     public void lendBook(int id){
         for(Book livro: livros){
