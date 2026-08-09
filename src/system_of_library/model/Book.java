@@ -30,18 +30,24 @@ public class Book {
     }
 
     public void setTitle(String title){
-        this.title = title;
+        if(title==null || title.isBlank()){
+            System.out.println("Titulo inválido!");
+        }else{
+            this.title = title;
+        }
     }
 
 
     public String getAuthor(){
-
         return author;
     }
 
     public void setAuthor(String author){
-
-        this.author = author;
+        if(author == null || author.isBlank()){
+            System.out.println("Autor inválido!");
+        }else{
+            this.author=author;
+        }
     }
 
     public int getReleaseyear(){
@@ -63,10 +69,24 @@ public class Book {
         return available;
     }
 
+
+    public void emprestarLivro(){
+        if(isAvailable()){
+            available=false;
+        }
+    }
+
+    public void devolverLivro(){
+        if(!isAvailable()){
+            available=true;
+        }
+    }
+
     //set do boolean
-    public void setAvailable(boolean available){
+    /*public void setAvailable(boolean available){
 
             this.available = available;
 
     }
+     */
 }
