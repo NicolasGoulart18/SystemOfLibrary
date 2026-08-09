@@ -70,23 +70,20 @@ public class Book {
     }
 
 
-    public void emprestarLivro(){
+    public boolean emprestarLivro(){
         if(isAvailable()){
             available=false;
+            return true;
         }
+        return false;
     }
 
-    public void devolverLivro(){
+    public boolean devolverLivro(){
         if(!isAvailable()){
             available=true;
+            return true;
         }
+        return false;
     }
 
-    //set do boolean
-    /*public void setAvailable(boolean available){
-
-            this.available = available;
-
-    }
-     */
 }
