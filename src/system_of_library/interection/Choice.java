@@ -1,8 +1,8 @@
 package system_of_library.interection;
 import system_of_library.funcionario.Bibliotecario;
 import system_of_library.service.Library;
+import system_of_library.students.Aluno;
 import java.util.Scanner;
-
 public class Choice {
     static Scanner scanner = new Scanner (System.in);
     public static void main(String[] args) {
@@ -12,6 +12,18 @@ public class Choice {
         boolean parar=false;
         int id;
 
+
+
+
+       /* Aluno aluno = new Aluno("Nicolas", "nicolas@email.com", "Rua X, 123",6,"601A");
+        aluno.getAnoEscolar();
+        aluno.getTurma();
+
+        System.out.println(aluno.getNome());
+        System.out.println(aluno.getAnoEscolar());
+        System.out.println(aluno.getTurma());
+
+        */
 
         do{
             int opcao=choice.opcao();
