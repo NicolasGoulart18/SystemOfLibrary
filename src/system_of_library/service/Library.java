@@ -53,35 +53,26 @@ public class Library {
     public void lendBook(int id){
         for(Book livro: livros){
             if(livro.getId()==id){
-                if (livro.isAvailable()){
-                    livro.setAvailable(false);
-                    System.out.println();
-                    System.out.println("Livro "+livro.getTitle()+" emprestado com sucesso!");
-                    System.out.println();
-                }else{
-                    System.out.println();
-                    System.out.println(livro.getTitle()+" já foi emprestado!");
-                    System.out.println();
+                if(livro.emprestarLivro()){
+                    System.out.println("Emprestado com sucesso!");
+                }else {
+                    System.out.println("Livro indisponivel");
                 }
                 return;
             }
         }
         System.out.println();
-        System.out.println("Livro com ID: "+id+" não encontrado!");
+        System.out.println("O Livro com ID: "+id+" não foi encontrado!");
+        System.out.println();
     }
 
     public void returnBook(int id){
         for (Book livro:livros){
             if (livro.getId()==id){
-                if (!livro.isAvailable()){
-                    livro.setAvailable(true);
-                    System.out.println();
-                    System.out.println(livro.getTitle()+" devolvido com sucesso!");
-                    System.out.println();
+                if (livro.devolverLivro()){
+                    System.out.println("Livro devolvido com sucesso!");
                 }else{
-                    System.out.println();
-                    System.out.println("Livro não foi emprestado!");
-                    System.out.println();
+                    System.out.println("Livro já foi devolvido");
                 }
                 return;
             }
