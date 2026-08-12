@@ -4,28 +4,20 @@ import system_of_library.usuarios.Usuario;
 
 public class Professor extends Usuario {
 
-    private String anoEscolar;
-    private String materia;
 
-    public Professor(String nome, String email, String endereco,String anoEscolar,String materia) {
+    private String disciplina;
+
+    public Professor(String nome, String email, String endereco,String disciplina) {
         super(nome, email, endereco);
-        this.anoEscolar=anoEscolar;
-        this.materia=materia;
+        this.disciplina = disciplina;
     }
 
-    public String getAnoEscolar() {
-        return anoEscolar;
+
+    public String getDisciplina() {
+        return disciplina;
     }
 
-    public void setAnoEscolar(String anoEscolar) {
-        this.anoEscolar = anoEscolar;
-    }
-
-    public String getMateria() {
-        return materia;
-    }
-
-    public void setMateria(String materia) {
-        this.materia = materia;
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
     }
 }

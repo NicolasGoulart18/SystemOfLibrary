@@ -12,10 +12,11 @@ public class Choice {
         boolean parar=false;
         int id;
 
-        Professor professor = new Professor("Joao","joaopadilha2email.com","rua dos beija-flores 123","Sexto Ano","Geografia");
-        System.out.println(professor.getNome());
-        System.out.println(professor.getAnoEscolar());
-        System.out.println(professor.getMateria());
+        Professor professor = new Professor("João", "joao@email.com", "Rua X", "Matemática");{
+            System.out.println(professor.getNome());
+            System.out.println(professor.getDisciplina());
+        }
+
 
 
 
