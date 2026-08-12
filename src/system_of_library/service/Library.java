@@ -1,17 +1,17 @@
 package system_of_library.service;
 import system_of_library.model.Book;
 import java.util.ArrayList;
-
+import system_of_library.usuarios.Usuario;
+import system_of_library.emprestimo.Emprestimo;
 public class Library {
 
-
     private ArrayList<Book>livros;
-
-
+    private ArrayList<Emprestimo> emprestimo= new ArrayList<>();
     public Library(){
         livros = new ArrayList<>();
     }
-    
+
+
     public void addBook(Book livro){
         livros.add(livro);
     }
@@ -35,6 +35,25 @@ public class Library {
     }
 
 
+    public boolean lendBook(int idLivro, Usuario usuario){
+        boolean existe = false;
+        for (Book livro:livros){
+            if (livro.getId()==idLivro){
+                existe=true;
+                if(livro.emprestarLivro()) {
+                    Emprestimo emprestimo0 = new Emprestimo(livro, usuario);
+                    emprestimo.add(emprestimo0);
+                    return true;
+                }else {
+                    System.out.println("Livro com ID: "+livro.getId()+" ja foi emprestado!");
+                }
+            }
+        }
+        if(!existe){
+            System.out.println("Livro não existe!");
+        }
+        return false;
+    }
 
     public void lendBook(int id){
         for(Book livro: livros){

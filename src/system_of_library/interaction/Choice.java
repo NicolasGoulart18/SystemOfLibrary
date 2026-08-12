@@ -2,6 +2,9 @@ package system_of_library.interaction;
 import system_of_library.usuarios.Professor;
 import system_of_library.service.Library;
 import system_of_library.usuarios.Bibliotecario;
+import system_of_library.usuarios.Usuario;
+import system_of_library.usuarios.Aluno;
+import system_of_library.usuarios.Professor;
 import java.util.Scanner;
 public class Choice {
     static Scanner scanner = new Scanner (System.in);
@@ -12,26 +15,10 @@ public class Choice {
 
         Bibliotecario bibliotecario = new Bibliotecario(
                 "Jõao","joao1232@email.com","rua dos cuiudo 80",library);
+
         boolean parar=false;
-        int id;
+        int id = 0;
 
-        Professor professor = new Professor("João", "joao@email.com", "Rua X", "Matemática");{
-            System.out.println(professor.getNome());
-            System.out.println(professor.getDisciplina());
-        }
-
-
-
-
-       /* Aluno aluno = new Aluno("Nicolas", "nicolas@email.com", "Rua X, 123",6,"601A");
-        aluno.getAnoEscolar();
-        aluno.getTurma();
-
-        System.out.println(aluno.getNome());
-        System.out.println(aluno.getAnoEscolar());
-        System.out.println(aluno.getTurma());
-
-        */
 
         do{
             int opcao=choice.opcao();
@@ -50,10 +37,45 @@ public class Choice {
                     library.listBook();
                     break;
                 case 3:
-                    System.out.println("Informe o ID do livro que deseja pegar emprestado: ");
-                    id=Integer.parseInt(scanner.nextLine());
-                    library.lendBook(id);
+                    System.out.println("[1] Aluno | [2] Professor ");
+                    int num=Integer.parseInt(scanner.nextLine());
+                    Usuario usuario = null;
+
+                    if(num==1){
+                        System.out.println("Nome: ");
+                        String nome=scanner.nextLine();
+                        System.out.println("Email: ");
+                        String email = scanner.nextLine();
+                        System.out.println("Endereço: ");
+                        String endereco = scanner.nextLine();
+                        System.out.println("Ano escolar: ");
+                        String anoEscolar=scanner.nextLine();
+                        System.out.println("Turma: ");
+                        String turma = scanner.nextLine();
+                        System.out.println("ID do livro desejado: ");
+                        id=Integer.parseInt(scanner.nextLine());
+                        usuario = new Aluno(nome,email,endereco,anoEscolar,turma);
+
+                    }else if(num==2){
+                        System.out.println("Nome: ");
+                        String nome=scanner.nextLine();
+                        System.out.println("Email: ");
+                        String email = scanner.nextLine();
+                        System.out.println("Endereço: ");
+                        String endereco = scanner.nextLine();
+                        System.out.println("Disciplina:");
+                        String disciplina = scanner.nextLine();
+                        System.out.println("ID do livro desejado: ");
+                        id=Integer.parseInt(scanner.nextLine());
+                        usuario = new Professor(nome,email,endereco,disciplina);
+                    }else {
+                        System.out.println("Opção Inválida!");
+                    }
+                    if(usuario !=null && id !=0){
+                        library.lendBook(id,usuario);
+                    }
                     break;
+
                 case 4:
                     System.out.println("Informe o ID do livro que você deseja devolver: ");
                     id=Integer.parseInt(scanner.nextLine());

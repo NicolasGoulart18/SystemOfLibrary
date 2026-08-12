@@ -87,3 +87,15 @@ public class Book {
     }
 
 }
+
+
+
+/*
+        System.out.println("[1] Aluno | [2] Professor ")
+        int num=scanner.Integer.parseInt(scanner.nextLine());
+        if(num==1){
+            informaria os dados do aluno
+        }else if(num==2){
+            informa os dados do professor
+        }
+ */
