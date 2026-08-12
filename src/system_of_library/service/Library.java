@@ -2,6 +2,7 @@ package system_of_library.service;
 import system_of_library.model.Book;
 import java.util.ArrayList;
 import system_of_library.usuarios.Usuario;
+import system_of_library.emprestimo.ResultadoEmpr;
 import system_of_library.emprestimo.Emprestimo;
 public class Library {
 
@@ -35,7 +36,7 @@ public class Library {
     }
 
 
-    public boolean lendBook(int idLivro, Usuario usuario){
+    public ResultadoEmpr.ResultadoEmprestimo lendBook(int idLivro, Usuario usuario){
         boolean existe = false;
         for (Book livro:livros){
             if (livro.getId()==idLivro){
@@ -43,9 +44,9 @@ public class Library {
                 if(livro.emprestarLivro()) {
                     Emprestimo emprestimo0 = new Emprestimo(livro, usuario);
                     emprestimo.add(emprestimo0);
-                    return true;
+                    return ResultadoEmpr.ResultadoEmprestimo.SUCESSO;
                 }else {
-                    System.out.println("Livro com ID: "+livro.getId()+" ja foi emprestado!");
+
                 }
             }
         }
@@ -55,21 +56,6 @@ public class Library {
         return false;
     }
 
-    public void lendBook(int id){
-        for(Book livro: livros){
-            if(livro.getId()==id){
-                if(livro.emprestarLivro()){
-                    System.out.println("Emprestado com sucesso!");
-                }else {
-                    System.out.println("Livro indisponivel");
-                }
-                return;
-            }
-        }
-        System.out.println();
-        System.out.println("O Livro com ID: "+id+" não foi encontrado!");
-        System.out.println();
-    }
 
     public void returnBook(int id){
         for (Book livro:livros){
