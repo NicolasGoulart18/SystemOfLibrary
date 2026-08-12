@@ -1,7 +1,6 @@
-package system_of_library.interection;
-import system_of_library.funcionario.Bibliotecario;
+package system_of_library.interaction;
 import system_of_library.service.Library;
-import system_of_library.students.Aluno;
+
 import java.util.Scanner;
 public class Choice {
     static Scanner scanner = new Scanner (System.in);
