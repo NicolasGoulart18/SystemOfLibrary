@@ -1,4 +1,5 @@
 package system_of_library.interaction;
+import system_of_library.professor.Professor;
 import system_of_library.service.Library;
 
 import java.util.Scanner;
@@ -11,6 +12,10 @@ public class Choice {
         boolean parar=false;
         int id;
 
+        Professor professor = new Professor("Joao","joaopadilha2email.com","rua dos beija-flores 123","Sexto Ano","Geografia");
+        System.out.println(professor.getNome());
+        System.out.println(professor.getAnoEscolar());
+        System.out.println(professor.getMateria());
 
 
 
