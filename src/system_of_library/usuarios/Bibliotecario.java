@@ -1,7 +1,6 @@
-package system_of_library.funcionario;
-import system_of_library.model.Book;
+package system_of_library.usuarios;
 import system_of_library.service.Library;
-import system_of_library.usuarios.Usuario;
+import system_of_library.model.Book;
 public class Bibliotecario extends Usuario {
 
     private Library library;
@@ -15,8 +14,9 @@ public class Bibliotecario extends Usuario {
         return library;
     }
 
-    public void cadastrarLivro(){
-        library.createBook();
+    public void cadastrarLivro(String titulo,String autor,int ano){
+        Book livro = new Book(titulo,autor,ano);
+        library.addBook(livro);
     }
 
 

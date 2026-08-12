@@ -1,6 +1,4 @@
-package system_of_library.professor;
-
-import system_of_library.usuarios.Usuario;
+package system_of_library.usuarios;
 
 public class Professor extends Usuario {
 

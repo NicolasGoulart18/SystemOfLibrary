@@ -1,14 +1,17 @@
 package system_of_library.interaction;
-import system_of_library.professor.Professor;
+import system_of_library.usuarios.Professor;
 import system_of_library.service.Library;
-
+import system_of_library.usuarios.Bibliotecario;
 import java.util.Scanner;
 public class Choice {
     static Scanner scanner = new Scanner (System.in);
     public static void main(String[] args) {
-
         Choice choice = new Choice();
+
         Library library = new Library();
+
+        Bibliotecario bibliotecario = new Bibliotecario(
+                "Jõao","joao1232@email.com","rua dos cuiudo 80",library);
         boolean parar=false;
         int id;
 
@@ -34,7 +37,13 @@ public class Choice {
             int opcao=choice.opcao();
             switch (opcao){
                 case 1:
-                    library.createBook();
+                    System.out.println("Nome do livro: ");
+                    String titulo= scanner.nextLine();
+                    System.out.println("Nome do autor: ");
+                    String autor= scanner.nextLine();
+                    System.out.println("Ano de lançamento: ");
+                    int ano = Integer.parseInt(scanner.nextLine());
+                    bibliotecario.cadastrarLivro(titulo,autor,ano);
                     break;
                 case 2:
                     System.out.println("======== CATÁLOGO ========");

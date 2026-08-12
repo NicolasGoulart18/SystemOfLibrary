@@ -1,29 +1,17 @@
 package system_of_library.service;
 import system_of_library.model.Book;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Library {
 
-    static  Scanner scanner = new Scanner(System.in);
+
     private ArrayList<Book>livros;
 
 
     public Library(){
         livros = new ArrayList<>();
     }
-    public void createBook(){
-        System.out.println("Nome do livro: ");
-        String nomeL=scanner.nextLine();
-        System.out.println("Nome do autor: ");
-        String nomeA=scanner.nextLine();
-        System.out.println("Ano de lançamento: ");
-        int ano=Integer.parseInt(scanner.nextLine());
-        Book book = new Book(nomeL,nomeA,ano);
-        addBook(book);
-
-    }
-
+    
     public void addBook(Book livro){
         livros.add(livro);
     }

@@ -1,5 +1,5 @@
-package system_of_library.students;
-import system_of_library.usuarios.Usuario;
+package system_of_library.usuarios;
+
 public class Aluno extends Usuario{
 
     private String anoEscolar;
