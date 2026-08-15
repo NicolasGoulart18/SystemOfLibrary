@@ -1,6 +1,10 @@
 package system_of_library.emprestimo;
 
-public class ResultadoEmpr {
+public enum ResultadoEmpr {
+
+        SUCESSO,
+        LIVRO_NAO_EXISTE,
+        LIVRO_INDISPONIVEL
 
    /*
         O que é enum:
@@ -22,9 +26,4 @@ public class ResultadoEmpr {
                 Como eu preciso retorar 2 valores false, o basico boolean não permite, pois so return true/false
                 ent o enum entra como uma luva nesse momento
     */
-    public enum ResultadoEmprestimo{
-       SUCESSO,
-       LIVRO_NAO_EXISTE,
-       LIVRO_INDISPONIVEL
-    }
 }

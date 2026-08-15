@@ -36,24 +36,19 @@ public class Library {
     }
 
 
-    public ResultadoEmpr.ResultadoEmprestimo lendBook(int idLivro, Usuario usuario){
-        boolean existe = false;
+    public ResultadoEmpr lendBook(int idLivro, Usuario usuario){
         for (Book livro:livros){
             if (livro.getId()==idLivro){
-                existe=true;
                 if(livro.emprestarLivro()) {
                     Emprestimo emprestimo0 = new Emprestimo(livro, usuario);
                     emprestimo.add(emprestimo0);
-                    return ResultadoEmpr.ResultadoEmprestimo.SUCESSO;
+                    return ResultadoEmpr.SUCESSO;
                 }else {
-
+                    return ResultadoEmpr.LIVRO_INDISPONIVEL;
                 }
             }
         }
-        if(!existe){
-            System.out.println("Livro não existe!");
-        }
-        return false;
+        return ResultadoEmpr.LIVRO_NAO_EXISTE;
     }
 
 
