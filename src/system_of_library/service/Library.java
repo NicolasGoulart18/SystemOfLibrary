@@ -35,7 +35,6 @@ public class Library {
         }
     }
 
-
     public ResultadoEmpr lendBook(int idLivro, Usuario usuario){
         for (Book livro:livros){
             if (livro.getId()==idLivro){
