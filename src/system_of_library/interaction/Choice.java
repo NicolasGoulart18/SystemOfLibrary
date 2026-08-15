@@ -1,10 +1,10 @@
 package system_of_library.interaction;
+import system_of_library.emprestimo.ResultadoEmpr;
 import system_of_library.usuarios.Professor;
 import system_of_library.service.Library;
 import system_of_library.usuarios.Bibliotecario;
 import system_of_library.usuarios.Usuario;
 import system_of_library.usuarios.Aluno;
-import system_of_library.usuarios.Professor;
 import java.util.Scanner;
 public class Choice {
     static Scanner scanner = new Scanner (System.in);
@@ -72,7 +72,14 @@ public class Choice {
                         System.out.println("Opção Inválida!");
                     }
                     if(usuario !=null && id !=0){
-                        library.lendBook(id,usuario);
+                        ResultadoEmpr resultadoEmpr = library.lendBook(id,usuario);
+                        if (resultadoEmpr == ResultadoEmpr.SUCESSO){
+                            System.out.println("Livro emprestado com sucesso!");
+                        }else if (resultadoEmpr == ResultadoEmpr.LIVRO_INDISPONIVEL){
+                            System.out.println("Livro indisponivel");
+                        } else if (resultadoEmpr == ResultadoEmpr.LIVRO_NAO_EXISTE){
+                            System.out.println("Livro não existe!");
+                        }
                     }
                     break;
 
