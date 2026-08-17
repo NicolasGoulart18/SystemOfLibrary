@@ -18,11 +18,7 @@ public class Choice {
 
         Library library = new Library();
 
-        Bibliotecario bibliotecario = new Bibliotecario(
-                "Jõao",
-                "joao1232@email.com",
-                "rua dos cuiudo 80",
-                library
+        Bibliotecario bibliotecario = new Bibliotecario("Jõao", "joao1232@email.com", "rua dos cuiudo 80", library
         );
 
         boolean parar = false;
