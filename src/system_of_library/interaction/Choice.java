@@ -9,7 +9,7 @@ import system_of_library.usuarios.Usuario;
 import java.util.Scanner;
 
 public class Choice {
-    int id=0;
+    static Bibliotecario bibliotecario;
     static Scanner scanner = new Scanner(System.in);
     static Library library = new Library();
     public static void main(String[] args) {
@@ -27,41 +27,25 @@ public class Choice {
             switch (opcao) {
 
                 case 1:
-                    System.out.println("Nome do livro: ");
-                    String titulo = scanner.nextLine();
-
-                    System.out.println("Nome do autor: ");
-                    String autor = scanner.nextLine();
-
-                    System.out.println("Ano de lançamento: ");
-                    int ano = Integer.parseInt(scanner.nextLine());
-
-                    bibliotecario.cadastrarLivro(titulo, autor, ano);
+                    choice.cadLivro();
                     break;
-
                 case 2:
                     System.out.println("======== CATÁLOGO ========");
                     library.listBook();
                     break;
-
                 case 3:
                     choice.emprestarLivro();
                     break;
-
                 case 4:
                     System.out.println("Informe o ID do livro que você deseja devolver: ");
                     id = Integer.parseInt(scanner.nextLine());
-
                     library.returnBook(id);
                     break;
-
                 case 5:
                     System.out.println("Informe o ID do livro que deseja remover: ");
                     id = Integer.parseInt(scanner.nextLine());
-
                     library.removeBook(id);
                     break;
-
                 case 6:
                     parar = true;
                     System.out.println("Obrigado!");
@@ -130,13 +114,21 @@ public class Choice {
         }
     }
 
-
+    private void cadLivro(){
+        System.out.println("Nome do livro: ");
+        String titulo = scanner.nextLine();
+        System.out.println("Nome do autor: ");
+        String autor = scanner.nextLine();
+        System.out.println("Ano de lançamento: ");
+        int ano = Integer.parseInt(scanner.nextLine());
+        bibliotecario.cadastrarLivro(titulo, autor, ano);
+    }
 
     private void emprestarLivro() {
         Usuario usuario = criarUsuario();
         if (usuario != null) {
             System.out.println("Informe o id do livro desejado: ");
-            id=Integer.parseInt(scanner.nextLine());
+            int id=Integer.parseInt(scanner.nextLine());
             if (id!=0){
                 ResultadoEmpr resultadoEmpr = library.lendBook(id, usuario);
                 if (resultadoEmpr==ResultadoEmpr.SUCESSO){
