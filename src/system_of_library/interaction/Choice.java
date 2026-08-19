@@ -1,5 +1,7 @@
 package system_of_library.interaction;
+import system_of_library.emprestimo.ResultadoDevolucao;
 import system_of_library.emprestimo.ResultadoEmpr;
+import system_of_library.model.Book;
 import system_of_library.service.Library;
 import system_of_library.usuarios.Aluno;
 import system_of_library.usuarios.Bibliotecario;
@@ -38,16 +40,13 @@ public class Choice {
                         cadLivro();
                         break;
                     case 2:
-                        System.out.println("======== CATÁLOGO ========");
-                        library.listBook();
+                        listarLivro();
                         break;
                     case 3:
                         emprestarLivro();
                         break;
                     case 4:
-                        System.out.println("Informe o ID do livro que você deseja devolver: ");
-                        int idDevolver = Integer.parseInt(scanner.nextLine());
-                        library.returnBook(idDevolver);
+                        devovolverLivro();
                         break;
                     case 5:
                         System.out.println("Informe o ID do livro que deseja remover: ");
@@ -80,6 +79,20 @@ public class Choice {
 
         return Integer.parseInt(scanner.nextLine());
     }
+
+    private void listarLivro(){System.out.println("======== CATÁLOGO ========");
+        if (library.getLivros().isEmpty()) {
+        System.out.println("Nenhum livro cadastrado.");
+        return;
+    }
+        for (Book livro : library.getLivros()) {
+        System.out.println("ID: " + livro.getId() + " | Título: " + livro.getTitle() +
+                " | Autor: " + livro.getAuthor() +
+                " | Disponível: " + (livro.isAvailable() ? "Sim" : "Não"));
+    }
+}
+
+
 
     private Usuario criarUsuario(){
         System.out.println("[1] Aluno | [2] Professor ");
@@ -131,6 +144,21 @@ public class Choice {
         System.out.println("Ano de lançamento: ");
         int ano = Integer.parseInt(scanner.nextLine());
         bibliotecario.cadastrarLivro(titulo, autor, ano);
+    }
+
+    private void devovolverLivro(){
+        System.out.println("Informe o ID do livro que você deseja devolver: ");
+        int idDevolver = Integer.parseInt(scanner.nextLine());
+        if(idDevolver!=0){
+            ResultadoDevolucao resultadoDevolucao = library.returnBook(idDevolver);
+            if (resultadoDevolucao==ResultadoDevolucao.SUCESSO){
+                System.out.println("Livro Devolvido!");
+            } else if (resultadoDevolucao==ResultadoDevolucao.LIVRO_JA_DEVOLVIDO) {
+                System.out.println("Livro já devolvido!");
+            }else{
+                System.out.println("Livro não existe!");
+            }
+        }
     }
 
     private void emprestarLivro() {

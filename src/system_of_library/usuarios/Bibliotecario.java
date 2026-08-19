@@ -19,6 +19,11 @@ public class Bibliotecario extends Usuario {
         library.addBook(livro);
     }
 
+    @Override
+    public int getPrazoEmprestimoDias() {
+        return 30;
+    }
+
     //testing
 }
 

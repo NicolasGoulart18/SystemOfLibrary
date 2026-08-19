@@ -4,7 +4,7 @@ import system_of_library.model.Book;
 import system_of_library.usuarios.Usuario;
 import system_of_library.emprestimo.ResultadoEmpr;
 import system_of_library.emprestimo.Emprestimo;
-
+import system_of_library.emprestimo.ResultadoDevolucao;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,13 +39,17 @@ public class Library {
         return ResultadoEmpr.LIVRO_NAO_EXISTE;
     }
 
-    public boolean returnBook(int id) {
+    public ResultadoDevolucao returnBook(int id) {
         for (Book livro : livros) {
             if (livro.getId() == id) {
-                return livro.devolverLivro();
+                if(livro.devolverLivro()){
+                    return ResultadoDevolucao.SUCESSO;
+                } else  {
+                    return ResultadoDevolucao.LIVRO_JA_DEVOLVIDO;
+                }
             }
         }
-        return false;
+        return ResultadoDevolucao.LIVRO_NAO_EXISTE;
     }
 
     public boolean removeBook(int id) {
