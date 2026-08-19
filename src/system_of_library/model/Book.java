@@ -1,101 +1,40 @@
 package system_of_library.model;
 
 public class Book {
-     private static int contador=1;
-     private int id;
-     private String title;
-     private String author;
-     private int releaseyear;
-     private boolean available;
+    private static int contador = 1;
+    private int id;
+    private String title;
+    private String author;
+    private int releaseyear;
+    private boolean available;
 
-    public Book(String title, String author, int releaseyear){
-        this.id=contador;
-        contador++;
+    public Book(String title, String author, int releaseyear) {
+        this.id = contador++;
         this.title = title;
         this.author = author;
-        setReleaseyear(releaseyear);
-        available =true;
-
+        this.releaseyear = releaseyear;
+        this.available = true;
     }
 
+    public int getId() { return id; }
+    public String getTitle() { return title; }
+    public String getAuthor() { return author; }
+    public int getReleaseyear() { return releaseyear; }
+    public boolean isAvailable() { return available; }
 
-
-    public int getId(){
-        return id;
-    }
-
-     public String getTitle(){
-
-        return title;
-    }
-
-    public void setTitle(String title){
-        if(title==null || title.isBlank()){
-            System.out.println("Titulo inválido!");
-        }else{
-            this.title = title;
-        }
-    }
-
-
-    public String getAuthor(){
-        return author;
-    }
-
-    public void setAuthor(String author){
-        if(author == null || author.isBlank()){
-            System.out.println("Autor inválido!");
-        }else{
-            this.author=author;
-        }
-    }
-
-    public int getReleaseyear(){
-
-        return releaseyear;
-    }
-
-    public void setReleaseyear(int releaseyear){
-        if(releaseyear <=0){
-            System.out.println("ERRO: "+ getTitle()+" com data inválido");
-        }else{
-            this.releaseyear = releaseyear;
-        }
-
-    }
-
-    //get do boolean
-    public boolean isAvailable() {
-        return available;
-    }
-
-
-    public boolean emprestarLivro(){
-        if(isAvailable()){
-            available=false;
+    public boolean emprestarLivro() {
+        if (available) {
+            available = false;
             return true;
         }
         return false;
     }
 
-    public boolean devolverLivro(){
-        if(!isAvailable()){
-            available=true;
+    public boolean devolverLivro() {
+        if (!available) {
+            available = true;
             return true;
         }
         return false;
     }
-
 }
-
-
-
-/*
-        System.out.println("[1] Aluno | [2] Professor ")
-        int num=scanner.Integer.parseInt(scanner.nextLine());
-        if(num==1){
-            informaria os dados do aluno
-        }else if(num==2){
-            informa os dados do professor
-        }
- */
