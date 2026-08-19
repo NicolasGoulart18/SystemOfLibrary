@@ -9,54 +9,65 @@ import system_of_library.usuarios.Usuario;
 import java.util.Scanner;
 
 public class Choice {
-    static Bibliotecario bibliotecario;
-    static Scanner scanner = new Scanner(System.in);
-    static Library library = new Library();
-    public static void main(String[] args) {
-        Choice choice = new Choice();
-        Bibliotecario bibliotecario = new Bibliotecario("Jõao", "joao1232@email.com", "rua dos cuiudo 80", library
-        );
+    private Bibliotecario bibliotecario;
+    private Scanner scanner;
+    private Library library;
 
+    public Choice(){
+        this.scanner = new Scanner(System.in);
+        this.library = new Library();
+        this.bibliotecario= new Bibliotecario("Pedro","pedrofunc@email.com","funcionarios-111",this.library);
+    }
+
+    public static void main(String[] args) {
+        Choice app = new Choice();
+        app.iniciarSistema();
+    }
+
+    public void iniciarSistema(){
         boolean parar = false;
         int id = 0;
 
         do {
+            try {
+                int opcao = exibirMenu();
 
-            int opcao = choice.opcao();
+                switch (opcao) {
 
-            switch (opcao) {
-
-                case 1:
-                    choice.cadLivro();
-                    break;
-                case 2:
-                    System.out.println("======== CATÁLOGO ========");
-                    library.listBook();
-                    break;
-                case 3:
-                    choice.emprestarLivro();
-                    break;
-                case 4:
-                    System.out.println("Informe o ID do livro que você deseja devolver: ");
-                    id = Integer.parseInt(scanner.nextLine());
-                    library.returnBook(id);
-                    break;
-                case 5:
-                    System.out.println("Informe o ID do livro que deseja remover: ");
-                    id = Integer.parseInt(scanner.nextLine());
-                    library.removeBook(id);
-                    break;
-                case 6:
-                    parar = true;
-                    System.out.println("Obrigado!");
-                    System.out.println("Encerrando....");
-                    break;
+                    case 1:
+                        cadLivro();
+                        break;
+                    case 2:
+                        System.out.println("======== CATÁLOGO ========");
+                        library.listBook();
+                        break;
+                    case 3:
+                        emprestarLivro();
+                        break;
+                    case 4:
+                        System.out.println("Informe o ID do livro que você deseja devolver: ");
+                        int idDevolver = Integer.parseInt(scanner.nextLine());
+                        library.returnBook(idDevolver);
+                        break;
+                    case 5:
+                        System.out.println("Informe o ID do livro que deseja remover: ");
+                        int idRemover = Integer.parseInt(scanner.nextLine());
+                        library.removeBook(idRemover);
+                        break;
+                    case 6:
+                        parar = true;
+                        System.out.println("Obrigado! Encerrando....");
+                        break;
+                    default:
+                        System.out.println("Opção inválida! Tente novamente.");
+                }
+            }catch (NumberFormatException e){
+                System.out.println("ERRO: Por favor, digite somente números inteiros!");
             }
-
         } while (!parar);
     }
 
-    public int opcao() {
+    private int exibirMenu() {
 
         System.out.println("=======  MENU  =======");
         System.out.println("Escolha a categoria desejada:");
@@ -67,9 +78,7 @@ public class Choice {
         System.out.println("[5] Remover Livro");
         System.out.println("[6] Encerrar atendimento");
 
-        int opcao = Integer.parseInt(scanner.nextLine());
-
-        return opcao;
+        return Integer.parseInt(scanner.nextLine());
     }
 
     private Usuario criarUsuario(){
