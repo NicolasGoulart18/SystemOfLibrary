@@ -88,11 +88,9 @@ public class Choice {
         return opcao;
     }
 
-    private void emprestarLivro() {
+    private Usuario criarUsuario(){
         System.out.println("[1] Aluno | [2] Professor ");
         int num = Integer.parseInt(scanner.nextLine());
-        Usuario usuario = null;
-
         if (num == 1) {
             System.out.println("Nome: ");
             String nome = scanner.nextLine();
@@ -109,10 +107,7 @@ public class Choice {
             System.out.println("Turma: ");
             String turma = scanner.nextLine();
 
-            System.out.println("ID do livro desejado: ");
-            id = Integer.parseInt(scanner.nextLine());
-
-            usuario = new Aluno(nome, email, endereco, anoEscolar, turma);
+            return new Aluno(nome, email, endereco, anoEscolar, turma);
 
         } else if (num == 2) {
             System.out.println("Nome: ");
@@ -127,26 +122,30 @@ public class Choice {
             System.out.println("Disciplina:");
             String disciplina = scanner.nextLine();
 
-            System.out.println("ID do livro desejado: ");
-            id = Integer.parseInt(scanner.nextLine());
-
-            usuario = new Professor(nome, email, endereco, disciplina);
+            return new Professor(nome, email, endereco, disciplina);
 
         } else {
-            System.out.println("Opção Inválida!");
+            System.out.println("Opção inválida");
+            return null;
         }
+    }
 
-        if (usuario != null && id != 0) {
-            ResultadoEmpr resultadoEmpr = library.lendBook(id, usuario);
 
-            if (resultadoEmpr == ResultadoEmpr.SUCESSO) {
-                System.out.println("Livro emprestado com sucesso!");
 
-            } else if (resultadoEmpr == ResultadoEmpr.LIVRO_INDISPONIVEL) {
-                System.out.println("Livro indisponivel");
-
-            } else {
-                System.out.println("Livro não existe!");
+    private void emprestarLivro() {
+        Usuario usuario = criarUsuario();
+        if (usuario != null) {
+            System.out.println("Informe o id do livro desejado: ");
+            id=Integer.parseInt(scanner.nextLine());
+            if (id!=0){
+                ResultadoEmpr resultadoEmpr = library.lendBook(id, usuario);
+                if (resultadoEmpr==ResultadoEmpr.SUCESSO){
+                    System.out.println("Livro emprestado com sucesso!");
+                } else if (resultadoEmpr==ResultadoEmpr.LIVRO_INDISPONIVEL) {
+                    System.out.println("Livro indisponivel!");
+                }else{
+                    System.out.println("Livro não existe!");
+                }
             }
         }
     }
