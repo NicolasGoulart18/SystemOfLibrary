@@ -46,7 +46,7 @@ public class Choice {
                         emprestarLivro();
                         break;
                     case 4:
-                        devovolverLivro();
+                        devolverlivro();
                         break;
                     case 5:
                         System.out.println("Informe o ID do livro que deseja remover: ");
@@ -146,10 +146,9 @@ public class Choice {
         bibliotecario.cadastrarLivro(titulo, autor, ano);
     }
 
-    private void devovolverLivro(){
-        System.out.println("Informe o ID do livro que você deseja devolver: ");
-        int idDevolver = Integer.parseInt(scanner.nextLine());
-        if(idDevolver!=0){
+    private void devolverlivro(){
+            System.out.println("Informe o ID do livro que você deseja devolver: ");
+            int idDevolver = Integer.parseInt(scanner.nextLine());
             ResultadoDevolucao resultadoDevolucao = library.returnBook(idDevolver);
             if (resultadoDevolucao==ResultadoDevolucao.SUCESSO){
                 System.out.println("Livro Devolvido!");
@@ -158,7 +157,6 @@ public class Choice {
             }else{
                 System.out.println("Livro não existe!");
             }
-        }
     }
 
     private void emprestarLivro() {
