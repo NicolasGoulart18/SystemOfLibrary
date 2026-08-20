@@ -39,7 +39,7 @@ public class Choice {
         }
 
         System.out.println("\nSessão iniciada como: " + usuarioLogado.getNome() +
-                " (" + usuarioLogado.getClass().getSimpleName() + ")");
+                " (" + usuarioLogado.getClass().getSimpleName()+")");
 
         do {
             try {
@@ -48,7 +48,7 @@ public class Choice {
                 switch (opcao) {
 
                     case 1:
-                        System.out.println("--- Identificação do Usuário ---");
+                        System.out.println("--- Olá "+this.usuarioLogado.getNome()+" ---");
                         cadLivro(this.usuarioLogado);
                         break;
                     case 2:
@@ -65,6 +65,10 @@ public class Choice {
                         removerLivro(this.usuarioLogado);
                         break;
                     case 6:
+                        System.out.println("--- Trocar de Usuário ---");
+                        this.usuarioLogado=criarUsuario();
+                        break;
+                    case 7:
                         parar = true;
                         System.out.println("Obrigado! Encerrando....");
                         break;
@@ -86,7 +90,8 @@ public class Choice {
         System.out.println("[3] Empréstimo de Livro");
         System.out.println("[4] Devolver Livro");
         System.out.println("[5] Remover Livro");
-        System.out.println("[6] Encerrar atendimento");
+        System.out.println("[6] Trocar Usuário");
+        System.out.println("[7] Encerrar Sistema");
 
         return Integer.parseInt(scanner.nextLine());
     }
@@ -108,10 +113,7 @@ public class Choice {
     private Usuario criarUsuario(){
         System.out.println("[1] Aluno | [2] Professor | [3] Bibliotecario");
         int num = Integer.parseInt(scanner.nextLine());
-        if(num <=2){
-            System.out.println("0pção Inválida");
-            return null;
-        }
+
         System.out.println("Nome: ");
         String nome = scanner.nextLine();
 
@@ -170,21 +172,20 @@ public class Choice {
     }
 
     private void emprestarLivro() {
-        Usuario usuario = criarUsuario();
-        if (usuario != null) {
+
             System.out.println("Informe o id do livro desejado: ");
             int id=Integer.parseInt(scanner.nextLine());
             if (id!=0){
-                ResultadoEmpr resultadoEmpr = library.lendBook(id, usuario);
+                ResultadoEmpr resultadoEmpr = library.lendBook(id, this.usuarioLogado);
                 if (resultadoEmpr==ResultadoEmpr.SUCESSO){
-                    System.out.println("Livro emprestado com sucesso!");
+                    System.out.println("Livro emprestado com sucesso para "+this.usuarioLogado.getNome());
+                    System.out.println(this.usuarioLogado.getNome()+" você tem "+this.usuarioLogado.getPrazoEmprestimoDias()+" dias para devolver o livro!");
                 } else if (resultadoEmpr==ResultadoEmpr.LIVRO_INDISPONIVEL) {
                     System.out.println("Livro indisponivel!");
                 }else{
                     System.out.println("Livro não existe!");
                 }
             }
-        }
     }
 
     private void removerLivro(Usuario usuarioAtivo){
@@ -196,7 +197,7 @@ public class Choice {
         int idRemover=Integer.parseInt(scanner.nextLine());
         ResultRemove resultRemove = library.removeBook(idRemover);
         if (resultRemove==ResultRemove.SUCESSO){
-            System.out.println("Livro removido com sucesso!");
+            System.out.println("Livro removido com sucesso pelo Bibliotecario: "+this.usuarioLogado.getNome());
         } else if (resultRemove==ResultRemove.LIVRO_EMPRESTADO) {
             System.out.println("O livro está emprestado no momento!");
         }else {
