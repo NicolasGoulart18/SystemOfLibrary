@@ -33,7 +33,7 @@ public class Choice {
         System.out.println("=== BEM-VINDO À BIBLIOTECA ===");
         System.out.println("Por favor, faça sua identificação inicial:");
         this.usuarioLogado=criarUsuario();
-        if(this.usuarioLogado==null){;
+        if(this.usuarioLogado==null){
             System.out.println("Falha na identificação, Encerrando sistema...");
             return;
         }

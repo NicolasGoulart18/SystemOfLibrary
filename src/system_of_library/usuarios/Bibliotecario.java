@@ -1,11 +1,8 @@
 package system_of_library.usuarios;
 import system_of_library.service.Library;
 import system_of_library.model.Book;
-import system_of_library.emprestimo.ResultRemove;
-import java.util.Scanner;
+
 public class Bibliotecario extends Usuario {
-    Scanner scanner = new Scanner(System.in);
-    private Book book;
     private Library library;
     public Bibliotecario (String name, String email,String endereco ,Library library) {
         super(name,email,endereco);
@@ -27,6 +24,5 @@ public class Bibliotecario extends Usuario {
         return 30;
     }
 
-    //testing
 }
 
