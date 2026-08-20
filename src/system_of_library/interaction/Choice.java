@@ -19,7 +19,7 @@ public class Choice {
     public Choice(){
         this.scanner = new Scanner(System.in);
         this.library = new Library();
-       // this.bibliotecario= new Bibliotecario("Pedro","pedrofunc@email.com","funcionarios-111",this.library);
+
     }
 
     public static void main(String[] args) {
