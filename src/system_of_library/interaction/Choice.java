@@ -34,7 +34,12 @@ public class Choice {
         System.out.println("Por favor, faça sua identificação inicial:");
         this.usuarioLogado=criarUsuario();
         if(this.usuarioLogado==null){;
+            System.out.println("Falha na identificação, Encerrando sistema...");
+            return;
         }
+
+        System.out.println("\nSessão iniciada como: " + usuarioLogado.getNome() +
+                " (" + usuarioLogado.getClass().getSimpleName() + ")");
 
         do {
             try {
@@ -44,7 +49,7 @@ public class Choice {
 
                     case 1:
                         System.out.println("--- Identificação do Usuário ---");
-                        cadLivro(usuarioLogado);
+                        cadLivro(this.usuarioLogado);
                         break;
                     case 2:
                         listarLivro();
@@ -57,7 +62,7 @@ public class Choice {
                         break;
                     case 5:
                         System.out.println("---Validação de Usuario---");
-                        removerLivro(usuarioLogado);
+                        removerLivro(this.usuarioLogado);
                         break;
                     case 6:
                         parar = true;
