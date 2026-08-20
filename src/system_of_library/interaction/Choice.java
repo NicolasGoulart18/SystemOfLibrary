@@ -137,7 +137,7 @@ public class Choice {
         }
     }
 
-    /*private void cadLivro(Usuario usuarioAtivo){
+    private void cadLivro(Usuario usuarioAtivo){
         if (!(usuarioAtivo instanceof Bibliotecario bib)){
             System.out.println("Somente Bibiliotecarios podem adicionar livros");
             return;
@@ -151,7 +151,7 @@ public class Choice {
         bib.cadastrarLivro(titulo, autor, ano);
     }
 
-     */
+
 
     private void devolverlivro(){
             System.out.println("Informe o ID do livro que você deseja devolver: ");
