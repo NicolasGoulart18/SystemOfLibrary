@@ -15,7 +15,7 @@ public class Choice {
     private Bibliotecario bibliotecario;
     private Scanner scanner;
     private Library library;
-
+    private Usuario usuarioLogado;
     public Choice(){
         this.scanner = new Scanner(System.in);
         this.library = new Library();
@@ -30,6 +30,11 @@ public class Choice {
     public void iniciarSistema(){
         boolean parar = false;
         int id = 0;
+        System.out.println("=== BEM-VINDO À BIBLIOTECA ===");
+        System.out.println("Por favor, faça sua identificação inicial:");
+        this.usuarioLogado=criarUsuario();
+        if(this.usuarioLogado==null){;
+        }
 
         do {
             try {
@@ -39,7 +44,6 @@ public class Choice {
 
                     case 1:
                         System.out.println("--- Identificação do Usuário ---");
-                        Usuario usuarioLogado=criarUsuario();
                         cadLivro(usuarioLogado);
                         break;
                     case 2:
@@ -52,7 +56,8 @@ public class Choice {
                         devolverlivro();
                         break;
                     case 5:
-                        removerLivro(this.bibliotecario);
+                        System.out.println("---Validação de Usuario---");
+                        removerLivro(usuarioLogado);
                         break;
                     case 6:
                         parar = true;
@@ -96,18 +101,21 @@ public class Choice {
 
 
     private Usuario criarUsuario(){
-        System.out.println("[1] Aluno | [2] Professor ");
+        System.out.println("[1] Aluno | [2] Professor | [3] Bibliotecario");
         int num = Integer.parseInt(scanner.nextLine());
+        if(num <=2){
+            System.out.println("0pção Inválida");
+            return null;
+        }
+        System.out.println("Nome: ");
+        String nome = scanner.nextLine();
+
+        System.out.println("Email: ");
+        String email = scanner.nextLine();
+
+        System.out.println("Endereço: ");
+        String endereco = scanner.nextLine();
         if (num == 1) {
-            System.out.println("Nome: ");
-            String nome = scanner.nextLine();
-
-            System.out.println("Email: ");
-            String email = scanner.nextLine();
-
-            System.out.println("Endereço: ");
-            String endereco = scanner.nextLine();
-
             System.out.println("Ano escolar: ");
             String anoEscolar = scanner.nextLine();
 
@@ -117,23 +125,13 @@ public class Choice {
             return new Aluno(nome, email, endereco, anoEscolar, turma);
 
         } else if (num == 2) {
-            System.out.println("Nome: ");
-            String nome = scanner.nextLine();
-
-            System.out.println("Email: ");
-            String email = scanner.nextLine();
-
-            System.out.println("Endereço: ");
-            String endereco = scanner.nextLine();
-
             System.out.println("Disciplina:");
             String disciplina = scanner.nextLine();
 
             return new Professor(nome, email, endereco, disciplina);
 
         } else {
-            System.out.println("Opção inválida");
-            return null;
+            return new Bibliotecario(nome,email,endereco,library);
         }
     }
 
