@@ -1,84 +1,172 @@
 # Library System
 
-A library management system built in plain Java, running through the console. It supports adding, listing, borrowing, returning and removing books, with data validation and handling of the main error cases.
+A library management system built in Java and developed as a study project focused on Object-Oriented Programming.
 
-This project was built step by step as part of my Java learning process, starting from the basics of classes and objects and evolving into a more organized structure split into layers.
+The project started as a simple console application and evolved throughout development, incorporating inheritance, polymorphism, encapsulation, enums, business rules, user roles and a more organized project structure.
 
 ## Technologies
 
-- Java
-- Git / GitHub
+* Java
+* Git / GitHub
+* Java HTTP Server
 
-## Concepts applied
+## Concepts Applied
 
-- Object-Oriented Programming (classes and objects)
-- Encapsulation (private fields, getters and setters)
-- Constructors
-- Static field (used to auto-generate each book's ID)
-- ArrayList, to store the list of books
-- Loops (for, for-each, do-while)
-- Conditionals (if/else, switch)
-- Reading user input with Scanner
-- Code organized into packages
+* Object-Oriented Programming
+* Encapsulation
+* Inheritance
+* Polymorphism
+* Constructors
+* Method overriding with `@Override`
+* `ArrayList`
+* Enums
+* Composition
+* `instanceof` and pattern matching
+* Loops and conditionals
+* `Scanner` for user input
+* Exception handling
+* Separation of responsibilities
+* Business rules
+* Code organization with packages
 
-## Project structure
+## Project Structure
 
-```
+```text
 system_of_library
- ├── model
- │    └── Book.java       -> represents a book (data and validation)
- ├── service
- │    └── Library.java    -> holds the list of books and the business logic
- └── interection
-      └── Choice.java     -> menu and user input handling
+├── emprestimo
+│   ├── Emprestimo.java
+│   ├── ResultadoEmpr.java
+│   ├── ResultadoDevolucao.java
+│   └── ResultRemove.java
+│
+├── interaction
+│   ├── Choice.java
+│   └── WebServer.java
+│
+├── model
+│   └── Book.java
+│
+├── service
+│   └── Library.java
+│
+└── usuarios
+    ├── Usuario.java
+    ├── Aluno.java
+    ├── Professor.java
+    └── Bibliotecario.java
 ```
 
-The idea behind this split is to separate responsibilities: `Book` only deals with a single book's data, `Library` manages the collection (adding, listing, borrowing, etc.), and `Choice` only handles interaction with whoever is using the program. This keeps each class with a clear purpose, and makes it easier to change one part without breaking the others.
+Each package has a specific responsibility:
+
+* `model` contains the main domain entities.
+* `service` contains the library management and business logic.
+* `usuarios` contains the user hierarchy and different user roles.
+* `emprestimo` contains loan-related classes and operation results.
+* `interaction` contains the application interface and interaction logic.
 
 ## Features
 
-- Add a book
-- List registered books
-- Borrow a book (by ID)
-- Return a book (by ID)
-- Remove a book (by ID)
+### User Management
 
-Each book gets a unique ID automatically when it's registered, used to find it in the other operations.
+The system supports different types of users:
 
-The program also handles some common errors, like trying to borrow a book that's already borrowed, entering an ID that doesn't exist, or trying to return a book that wasn't borrowed.
+* Student
+* Professor
+* Librarian
 
-## How to run
+Users are created dynamically and the active user is maintained during the session.
+
+The system also allows the user to switch accounts without restarting the application.
+
+### Book Management
+
+* Add books
+* List registered books
+* Remove books
+* Automatically generate book IDs
+* Check book availability
+
+Only librarians are allowed to add or remove books.
+
+### Book Loans
+
+Users can borrow available books using their IDs.
+
+The system validates:
+
+* Whether the book exists
+* Whether the book is available
+* Whether the loan operation was successful
+
+Each user type has its own loan period, demonstrating polymorphism.
+
+After a successful loan, the system displays the user's deadline for returning the book.
+
+### Book Returns
+
+Users can return books by ID.
+
+The system handles different return results, including:
+
+* Successful return
+* Book already returned
+* Book not found
+
+### Business Rules
+
+The project contains rules to prevent invalid operations, such as:
+
+* Borrowing an unavailable book
+* Removing a book that is currently borrowed
+* Adding or removing books without librarian permissions
+* Operating with a book ID that does not exist
+
+Operation results are represented using enums instead of relying only on boolean values.
+
+## Error Handling
+
+The application handles invalid numeric input using exception handling and provides feedback when an invalid option or value is entered.
+
+## Web Server
+
+The project also contains an experimental HTTP server implementation using Java's built-in HTTP server.
+
+It provides a simple web interface for interacting with the library and demonstrates how the existing Java business logic can be exposed through HTTP endpoints.
+
+## How to Run
 
 1. Clone the repository:
-```
-git clone https://github.com/NicolasGoulart18/SistemOfLibrary.git
-```
-2. Open the project in your IDE of choice.
-3. Run the `Choice.java` class (it contains the `main` method).
-4. Use the console menu to navigate through the options.
 
-## Usage example
-
-```
-=======  MENU  =======
-Choose an option:
-[1] Add Book
-[2] List Books
-[3] Borrow Book
-[4] Return Book
-[5] Remove Book
-[6] Exit
+```bash
+git clone https://github.com/NicolasGoulart18/SystemOfLibrary.git
 ```
 
-## Next steps
+2. Open the project in an IDE that supports Java.
 
-I still plan to evolve this project with:
+3. Run:
 
-- Exception handling
-- File-based data persistence
-- Database integration (JDBC / MySQL)
-- Migration to Spring Boot
-- REST API
+```text
+system_of_library.interaction.Choice
+```
+
+4. Follow the instructions displayed in the console.
+
+## What I Learned
+
+This project was initially created to review Java and Object-Oriented Programming concepts.
+
+Throughout its development, I practiced not only writing code, but also refactoring an existing project and improving its architecture as new requirements appeared.
+
+Some of the main topics practiced were:
+
+* Designing classes and relationships
+* Applying inheritance and polymorphism
+* Separating responsibilities
+* Modeling business rules
+* Using enums to represent operation results
+* Organizing a Java project into packages
+* Refactoring large methods
+* Using Git and GitHub throughout development
 
 ## Author
 
