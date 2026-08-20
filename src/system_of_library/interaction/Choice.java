@@ -1,4 +1,5 @@
 package system_of_library.interaction;
+import system_of_library.emprestimo.ResultRemove;
 import system_of_library.emprestimo.ResultadoDevolucao;
 import system_of_library.emprestimo.ResultadoEmpr;
 import system_of_library.model.Book;
@@ -18,7 +19,7 @@ public class Choice {
     public Choice(){
         this.scanner = new Scanner(System.in);
         this.library = new Library();
-        this.bibliotecario= new Bibliotecario("Pedro","pedrofunc@email.com","funcionarios-111",this.library);
+       // this.bibliotecario= new Bibliotecario("Pedro","pedrofunc@email.com","funcionarios-111",this.library);
     }
 
     public static void main(String[] args) {
@@ -37,7 +38,9 @@ public class Choice {
                 switch (opcao) {
 
                     case 1:
-                        cadLivro();
+                        System.out.println("--- Identificação do Usuário ---");
+                        Usuario usuarioLogado=criarUsuario();
+                        cadLivro(usuarioLogado);
                         break;
                     case 2:
                         listarLivro();
@@ -49,9 +52,7 @@ public class Choice {
                         devolverlivro();
                         break;
                     case 5:
-                        System.out.println("Informe o ID do livro que deseja remover: ");
-                        int idRemover = Integer.parseInt(scanner.nextLine());
-                        library.removeBook(idRemover);
+                        removerLivro(this.bibliotecario);
                         break;
                     case 6:
                         parar = true;
@@ -136,15 +137,21 @@ public class Choice {
         }
     }
 
-    private void cadLivro(){
+    /*private void cadLivro(Usuario usuarioAtivo){
+        if (!(usuarioAtivo instanceof Bibliotecario bib)){
+            System.out.println("Somente Bibiliotecarios podem adicionar livros");
+            return;
+        }
         System.out.println("Nome do livro: ");
         String titulo = scanner.nextLine();
         System.out.println("Nome do autor: ");
         String autor = scanner.nextLine();
         System.out.println("Ano de lançamento: ");
         int ano = Integer.parseInt(scanner.nextLine());
-        bibliotecario.cadastrarLivro(titulo, autor, ano);
+        bib.cadastrarLivro(titulo, autor, ano);
     }
+
+     */
 
     private void devolverlivro(){
             System.out.println("Informe o ID do livro que você deseja devolver: ");
@@ -176,4 +183,22 @@ public class Choice {
             }
         }
     }
+
+    private void removerLivro(Usuario usuarioAtivo){
+        if(!(usuarioAtivo instanceof Bibliotecario)){
+            System.out.println("Apenas Bibliotecarios podem remover livros!");
+            return;
+        }
+        System.out.println("Informe o id do livro que deseja remover: ");
+        int idRemover=Integer.parseInt(scanner.nextLine());
+        ResultRemove resultRemove = library.removeBook(idRemover);
+        if (resultRemove==ResultRemove.SUCESSO){
+            System.out.println("Livro removido com sucesso!");
+        } else if (resultRemove==ResultRemove.LIVRO_EMPRESTADO) {
+            System.out.println("O livro está emprestado no momento!");
+        }else {
+            System.out.println("Livro com ID: "+idRemover+" não foi encontrado!");
+        }
+    }
+
 }

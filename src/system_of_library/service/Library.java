@@ -1,5 +1,6 @@
 package system_of_library.service;
 
+import system_of_library.emprestimo.ResultRemove;
 import system_of_library.model.Book;
 import system_of_library.usuarios.Usuario;
 import system_of_library.emprestimo.ResultadoEmpr;
@@ -52,7 +53,16 @@ public class Library {
         return ResultadoDevolucao.LIVRO_NAO_EXISTE;
     }
 
-    public boolean removeBook(int id) {
-        return livros.removeIf(livro -> livro.getId() == id);
+    public ResultRemove removeBook(int id) {
+        for (Book livro : livros) {
+            if (livro.getId() == id) {
+                if (!livro.isAvailable()) {
+                    return ResultRemove.LIVRO_EMPRESTADO;
+                }
+                livros.remove(livro);
+                return ResultRemove.SUCESSO;
+            }
+        }
+        return ResultRemove.LIVRO_NAO_EXISTE;
     }
 }
