@@ -176,6 +176,10 @@ The main goal is to practice Java and object-oriented design through a complete 
 
 The application keeps the basic CRUD flow centered on books: creating records, reading the catalog, updating state through loan/return operations, and removing eligible books.
 
+## Access Control
+
+Book creation and removal are restricted to librarian users, while borrowing and returning depend on the active user and the current state of each book.
+
 ## Author
 
 Nicolas Goulart
