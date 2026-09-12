@@ -168,6 +168,10 @@ Some of the main topics practiced were:
 * Refactoring large methods
 * Using Git and GitHub throughout development
 
+## Project Goal
+
+The main goal is to practice Java and object-oriented design through a complete library management flow while keeping the code simple enough to study and evolve.
+
 ## Author
 
 Nicolas Goulart
