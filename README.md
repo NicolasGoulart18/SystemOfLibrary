@@ -172,6 +172,10 @@ Some of the main topics practiced were:
 
 The main goal is to practice Java and object-oriented design through a complete library management flow while keeping the code simple enough to study and evolve.
 
+## CRUD Overview
+
+The application keeps the basic CRUD flow centered on books: creating records, reading the catalog, updating state through loan/return operations, and removing eligible books.
+
 ## Author
 
 Nicolas Goulart
