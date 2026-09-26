@@ -1,33 +1,80 @@
 # Library System
 
-A library management system built in Java and developed as a study project focused on Object-Oriented Programming.
+Library management system developed in Java as a study project focused on Object-Oriented Programming, business rules, and code organization.
 
-The project started as a simple console application and evolved throughout development, incorporating inheritance, polymorphism, encapsulation, enums, business rules, user roles and a more organized project structure.
+The project started as a simple console application and gradually evolved with user roles, loans, returns, enums, validations, and an experimental HTTP interface.
 
-## Technologies
+## Main Features
 
-* Java
-* Git / GitHub
-* Java HTTP Server
+### User management
+
+The system supports different user types:
+
+- Student
+- Professor
+- Librarian
+
+The active user can be changed during the same application session.
+
+### Book management
+
+- Add books
+- List registered books
+- Remove eligible books
+- Generate book IDs
+- Check availability
+
+Book creation and removal are restricted to librarian users.
+
+### Loans
+
+Users can borrow available books by ID.
+
+The system validates whether:
+
+- The book exists
+- The book is available
+- The loan can be completed
+
+Different user types can have different loan periods, applying polymorphism to the business rules.
+
+### Returns
+
+Books can be returned by ID, with specific operation results for cases such as:
+
+- Successful return
+- Book already returned
+- Book not found
+
+## Business Rules
+
+The project prevents invalid operations such as:
+
+- Borrowing an unavailable book
+- Removing a borrowed book
+- Adding or removing books without librarian permission
+- Operating with a book ID that does not exist
+
+Enums are used to represent operation results instead of relying only on boolean values.
 
 ## Concepts Applied
 
-* Object-Oriented Programming
-* Encapsulation
-* Inheritance
-* Polymorphism
-* Constructors
-* Method overriding with `@Override`
-* `ArrayList`
-* Enums
-* Composition
-* `instanceof` and pattern matching
-* Loops and conditionals
-* `Scanner` for user input
-* Exception handling
-* Separation of responsibilities
-* Business rules
-* Code organization with packages
+- Object-Oriented Programming
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Constructors
+- Method overriding
+- Composition
+- `ArrayList`
+- Enums
+- `instanceof` and pattern matching
+- Loops and conditionals
+- `Scanner`
+- Exception handling
+- Separation of responsibilities
+- Business rules
+- Package organization
 
 ## Project Structure
 
@@ -38,17 +85,13 @@ system_of_library
 │   ├── ResultadoEmpr.java
 │   ├── ResultadoDevolucao.java
 │   └── ResultRemove.java
-│
 ├── interaction
 │   ├── Choice.java
 │   └── WebServer.java
-│
 ├── model
 │   └── Book.java
-│
 ├── service
 │   └── Library.java
-│
 └── usuarios
     ├── Usuario.java
     ├── Aluno.java
@@ -56,82 +99,32 @@ system_of_library
     └── Bibliotecario.java
 ```
 
-Each package has a specific responsibility:
+### Package responsibilities
 
-* `model` contains the main domain entities.
-* `service` contains the library management and business logic.
-* `usuarios` contains the user hierarchy and different user roles.
-* `emprestimo` contains loan-related classes and operation results.
-* `interaction` contains the application interface and interaction logic.
+- `model` — domain entities
+- `service` — library management and business logic
+- `usuarios` — user hierarchy and roles
+- `emprestimo` — loan-related classes and operation results
+- `interaction` — console and HTTP interaction layers
 
-## Features
+## CRUD Overview
 
-### User Management
+The basic CRUD flow is centered on books:
 
-The system supports different types of users:
-
-* Student
-* Professor
-* Librarian
-
-Users are created dynamically and the active user is maintained during the session.
-
-The system also allows the user to switch accounts without restarting the application.
-
-### Book Management
-
-* Add books
-* List registered books
-* Remove books
-* Automatically generate book IDs
-* Check book availability
-
-Only librarians are allowed to add or remove books.
-
-### Book Loans
-
-Users can borrow available books using their IDs.
-
-The system validates:
-
-* Whether the book exists
-* Whether the book is available
-* Whether the loan operation was successful
-
-Each user type has its own loan period, demonstrating polymorphism.
-
-After a successful loan, the system displays the user's deadline for returning the book.
-
-### Book Returns
-
-Users can return books by ID.
-
-The system handles different return results, including:
-
-* Successful return
-* Book already returned
-* Book not found
-
-### Business Rules
-
-The project contains rules to prevent invalid operations, such as:
-
-* Borrowing an unavailable book
-* Removing a book that is currently borrowed
-* Adding or removing books without librarian permissions
-* Operating with a book ID that does not exist
-
-Operation results are represented using enums instead of relying only on boolean values.
+- **Create:** register books
+- **Read:** list and inspect the catalog
+- **Update:** change book state through loans and returns
+- **Delete:** remove eligible books
 
 ## Error Handling
 
-The application handles invalid numeric input using exception handling and provides feedback when an invalid option or value is entered.
+Invalid numeric input is handled with exceptions, and the application provides feedback when the user enters an invalid option or value.
 
-## Web Server
+## Experimental Web Server
 
-The project also contains an experimental HTTP server implementation using Java's built-in HTTP server.
+The repository also contains an experimental HTTP server built with Java's native HTTP server.
 
-It provides a simple web interface for interacting with the library and demonstrates how the existing Java business logic can be exposed through HTTP endpoints.
+Its purpose is to explore how the existing business logic can be exposed through HTTP without changing the core domain rules.
 
 ## How to Run
 
@@ -141,44 +134,33 @@ It provides a simple web interface for interacting with the library and demonstr
 git clone https://github.com/NicolasGoulart18/SystemOfLibrary.git
 ```
 
-2. Open the project in an IDE that supports Java.
-
+2. Open the project in a Java IDE.
 3. Run:
 
 ```text
 system_of_library.interaction.Choice
 ```
 
-4. Follow the instructions displayed in the console.
+4. Follow the menu displayed in the terminal.
 
 ## What I Learned
 
-This project was initially created to review Java and Object-Oriented Programming concepts.
+This project has been used to practice both implementation and refactoring.
 
-Throughout its development, I practiced not only writing code, but also refactoring an existing project and improving its architecture as new requirements appeared.
+Main learning points:
 
-Some of the main topics practiced were:
-
-* Designing classes and relationships
-* Applying inheritance and polymorphism
-* Separating responsibilities
-* Modeling business rules
-* Using enums to represent operation results
-* Organizing a Java project into packages
-* Refactoring large methods
-* Using Git and GitHub throughout development
+- Designing classes and relationships
+- Applying inheritance and polymorphism
+- Separating responsibilities
+- Modeling business rules
+- Using enums for operation results
+- Organizing packages
+- Refactoring methods as requirements evolve
+- Using Git and GitHub during development
 
 ## Project Goal
 
-The main goal is to practice Java and object-oriented design through a complete library management flow while keeping the code simple enough to study and evolve.
-
-## CRUD Overview
-
-The application keeps the basic CRUD flow centered on books: creating records, reading the catalog, updating state through loan/return operations, and removing eligible books.
-
-## Access Control
-
-Book creation and removal are restricted to librarian users, while borrowing and returning depend on the active user and the current state of each book.
+The goal is to practice Java and object-oriented design through a complete library flow while keeping the code understandable enough to study and evolve.
 
 ## Author
 
